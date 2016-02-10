@@ -16,18 +16,17 @@
 
 package com.android.gl2jni;
 
-// Wrapper for native library
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
 
-public class GL2JNILib {
 
-     static {
-         System.loadLibrary("gl2jni");
-     }
+public class FirstNative extends Activity {
+    private static String LOGTAG = "FirstNative";
+    @Override protected void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        Log.d(LOGTAG, "On Create Method Calling Native Library");
+        NativeLibrary.init();
+    }
 
-    /**
-     * @param width the current view width
-     * @param height the current view height
-     */
-     public static native void init(int width, int height);
-     public static native void step();
 }
