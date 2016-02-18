@@ -17,6 +17,7 @@
 package com.android.gl2jni;
 
 import android.app.Activity;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -30,17 +31,21 @@ public class GL2JNIActivity extends Activity {
 
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        mView = new GL2JNIView(getApplication());
-	setContentView(mView);
+        mView = new GL2JNIView((getApplication()));
+        setContentView(mView);
     }
 
     @Override protected void onPause() {
         super.onPause();
-        mView.onPause();
+        if (mView != null) {
+            mView.onPause();
+        }
     }
 
     @Override protected void onResume() {
         super.onResume();
-        mView.onResume();
+        if (mView != null) {
+            mView.onResume();
+        }
     }
 }
